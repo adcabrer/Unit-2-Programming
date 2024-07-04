@@ -1,0 +1,47 @@
+// Import Three.js as a module
+import * as THREE from 'https://cdn.skypack.dev/three@0.135.0';
+
+// Set up scene, camera, renderer
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Create geometry (polygon with 5 vertices)
+const geometry = new THREE.BufferGeometry();
+const vertices = new Float32Array([
+    0, 0, 0,   // Vertex 1
+    1, 0, 0,   // Vertex 2
+    0.5, 0.5, 0, // Vertex 3
+    -0.5, 0.5, 0, // Vertex 4
+    -1, 0, 0    // Vertex 5
+]);
+geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+geometry.setIndex([
+    0, 1, 2,
+    0, 2, 3,
+    0, 3, 4
+]);
+
+// Create material (red or blue)
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Red color
+// const material = new THREE.MeshBasicMaterial({ color: 0x0000ff }); // Blue color
+
+// Create mesh and add to scene
+const polygon = new THREE.Mesh(geometry, material);
+scene.add(polygon);
+
+// Position camera
+camera.position.z = 5;
+
+// Animation function
+function animate() {
+    polygon.rotation.x += 0.01;
+    polygon.rotation.y += 0.01;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+}
+
+// Start animation
+animate();

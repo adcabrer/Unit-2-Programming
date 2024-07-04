@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Unit 2 Programming Assignment</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="module" src="/main.js"></script>
+    <script src="https://cdn.skypack.dev/three@0.135.0"></script>
+</body>
+</html>
